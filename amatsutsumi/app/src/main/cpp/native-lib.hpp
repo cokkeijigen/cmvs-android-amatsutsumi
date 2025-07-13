@@ -26,7 +26,7 @@ struct hooker
     template<auto fun>
     inline static auto add_hook(void* target) -> int
     {
-        auto _out{reinterpret_cast<void**>(&hooker::call<fun>)};
+        auto _out{ reinterpret_cast<void**>(&hooker::call<fun>) };
         auto _fun{ reinterpret_cast<void*>(fun) };
         return ::DobbyHook(target, _fun, _out);
     }

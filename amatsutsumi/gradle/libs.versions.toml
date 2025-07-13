@@ -2,7 +2,6 @@
 agp = "8.10.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
-shadowhook = "1.1.1"
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

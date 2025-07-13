@@ -4394,7 +4394,7 @@ namespace gbk2utf16
 
     inline constexpr auto table_max{ sizeof(table) / sizeof(char_pair) };
 
-    static auto to_utf16(uint16_t gbk) -> uint16_t
+    static auto query(uint16_t gbk) -> uint16_t
     {
         int low{ 0 }, high{ table_max - 1 };
 

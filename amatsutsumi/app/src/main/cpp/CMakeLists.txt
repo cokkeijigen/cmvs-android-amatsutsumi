@@ -11,6 +11,8 @@ cmake_minimum_required(VERSION 3.22.1)
 # build script scope).
 project("amatsutsumihook")
 
+set(CMAKE_CXX_STANDARD 17)
+
 include(FetchContent)
 
 # Dobby a lightweight, multi-platform, multi-architecture exploit hook framework.

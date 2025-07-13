@@ -6,7 +6,6 @@ shadowhook = "1.1.1"
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-shadowhook = { module = "com.bytedance.android:shadowhook", version.ref = "shadowhook" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 

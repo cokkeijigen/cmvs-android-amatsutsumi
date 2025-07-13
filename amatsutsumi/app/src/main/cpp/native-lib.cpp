@@ -10,7 +10,7 @@ static auto call_type mbstowcs_one_hook(uint16_t uChar) -> wchar_t
     return hooker::call<mbstowcs_one_hook>(uChar);
 }
 
-static auto call_type ApiSjisCheck_Hook(uint8_t chr) -> int
+static auto call_type api_sjis_check_hook(uint8_t chr) -> int
 {
     return static_cast<int>(chr > 0x7F);
 }
@@ -30,14 +30,14 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
             LOGD("mbstowcs_onet_ptr is nullptr");
         }
 
-        void* ApiSjisCheck_ptr{ ::dlsym(handle, "_Z12ApiSjisCheckh")  };
-        if(ApiSjisCheck_ptr != nullptr)
+        void* api_sjis_check_ptr{ ::dlsym(handle, "_Z12ApiSjisCheckh")  };
+        if(api_sjis_check_ptr != nullptr)
         {
-            hooker::add_hook<ApiSjisCheck_Hook>(ApiSjisCheck_ptr);
+            hooker::add_hook<api_sjis_check_hook>(api_sjis_check_ptr);
         }
         else
         {
-            LOGD("ApiSjisCheck_ptr is nullptr");
+            LOGD("api_sjis_check_ptr is nullptr");
         }
     }
     else

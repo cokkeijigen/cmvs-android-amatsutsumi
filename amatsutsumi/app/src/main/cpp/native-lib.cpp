@@ -2,7 +2,7 @@
 
 static auto call_type mbstowcs_one_hook(uint16_t uChar) -> wchar_t
 {
-    auto u16char { gbk2utf16::to_utf16( (uChar & 0xFF) << 8 | (uChar >> 8)) };
+    auto u16char { gbk2utf16::query( (uChar & 0xFF) << 8 | (uChar >> 8)) };
     if(u16char != 0xFFFF)
     {
         return u16char;
@@ -30,7 +30,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
             LOGD("mbstowcs_onet_ptr is nullptr");
         }
 
-        void* api_sjis_check_ptr{ ::dlsym(handle, "_Z12ApiSjisCheckh")  };
+        void* api_sjis_check_ptr { ::dlsym(handle, "_Z12ApiSjisCheckh")  };
         if(api_sjis_check_ptr != nullptr)
         {
             hooker::add_hook<api_sjis_check_hook>(api_sjis_check_ptr);

@@ -1,18 +1,18 @@
 #include <native-lib.hpp>
 
-static auto call_type mbstowcs_one_hook(uint16_t chr) -> wchar_t
+static auto call_type mbstowcs_one_hook(uint16_t chars) -> wchar_t
 {
-    auto u16char { gbk2utf16::query((chr & 0xFF) << 8 | (chr >> 8)) };
+    auto u16char { gbk2utf16::query((chars & 0xFF) << 8 | (chars >> 8)) };
     if(u16char != 0xFFFF)
     {
         return u16char;
     }
-    return hooker::call<mbstowcs_one_hook>(chr);
+    return hooker::call<mbstowcs_one_hook>(chars);
 }
 
-static auto call_type api_sjis_check_hook(uint8_t chr) -> int
+static auto call_type api_sjis_check_hook(uint8_t achar) -> int
 {
-    return static_cast<int>(chr > 0x7F);
+    return static_cast<int>(achar > 0x7F);
 }
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {

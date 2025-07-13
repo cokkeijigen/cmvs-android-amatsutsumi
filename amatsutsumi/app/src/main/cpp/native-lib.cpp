@@ -1,13 +1,13 @@
 #include <native-lib.hpp>
 
-static auto call_type mbstowcs_one_hook(uint16_t uChar) -> wchar_t
+static auto call_type mbstowcs_one_hook(uint16_t chr) -> wchar_t
 {
-    auto u16char { gbk2utf16::query( (uChar & 0xFF) << 8 | (uChar >> 8)) };
+    auto u16char { gbk2utf16::query((chr & 0xFF) << 8 | (chr >> 8)) };
     if(u16char != 0xFFFF)
     {
         return u16char;
     }
-    return hooker::call<mbstowcs_one_hook>(uChar);
+    return hooker::call<mbstowcs_one_hook>(chr);
 }
 
 static auto call_type api_sjis_check_hook(uint8_t chr) -> int

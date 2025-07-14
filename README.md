@@ -8,3 +8,6 @@
 ![Image text](https://raw.githubusercontent.com/cokkeijigen/amatsutsumi_android/master/pictures/img_amatsutsumi_01.png)<br>
 接着打开游戏的游戏`apk`中的`dex`，找到`amatsutsumi`类，将前面复制的代码粘贴进去。
 ![Image text](https://raw.githubusercontent.com/cokkeijigen/amatsutsumi_android/master/pictures/img_amatsutsumi_02.png)<br>
+接着将我们自己编译的`apk`中的`lib`整个文件夹添加游戏的`apk`中
+![Image text](https://raw.githubusercontent.com/cokkeijigen/amatsutsumi_android/master/pictures/img_amatsutsumi_03.png)<br>
+最后使用`MT管理器`重新签名游戏`apk`即可。

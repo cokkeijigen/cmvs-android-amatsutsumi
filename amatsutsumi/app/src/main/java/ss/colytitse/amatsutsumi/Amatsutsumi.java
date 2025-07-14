@@ -4,10 +4,7 @@ package ss.colytitse.amatsutsumi;
 public class Amatsutsumi {
 
     static {
-        try {
-            System.loadLibrary("amatsutsumihook");
-        } catch (Throwable ignored) {
-        }
+        System.loadLibrary("amatsutsumihook");
     }
 
     /**

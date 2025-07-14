@@ -1,7 +1,7 @@
 # Amatsutsumi | アマツツミ | 天津罪 Android 中文本地化
 > 游戏详细：https://vndb.org/v18852  https://vndb.org/r100211
 >
-> 使用到的工具：Android Studio、MT管理器
+> 准备工具：[Android Studio](https://developer.android.com/)、[MT管理器](https://mt2.cn/)
 
 ## 0x01 如何让游戏加载`libamatsutsumihook.so`
 首先使用`Android Studio`编译成`apk`，然后使用`MT管理器`打开我们编译好的`apk`中`dex`，来到`Amatsutsumi`类中，将`loadLibrary`相关的`smali`代码复制。

@@ -2,7 +2,7 @@
 > 游戏详细：https://vndb.org/v18852  https://vndb.org/r100211 <br>
 > 准备工具：[Android Studio](https://developer.android.com/)、[MT管理器](https://mt2.cn/)
 
-该项目编译后的`apk`内包含`arm64-v8a`, `armeabi-v7a`, `x86`, `x86_64`的`.so`文件，主要功能为让游戏支持GBK编码文本，需要手动修改游戏apk让其加载。
+该项目编译后的`apk`内包含`arm64-v8a`, `armeabi-v7a`, `x86`, `x86_64`版本的`.so`文件，主要功能为让游戏支持GBK编码文本，需要手动修改游戏apk让其加载。
 ![Image text](https://raw.githubusercontent.com/cokkeijigen/amatsutsumi_android/master/pictures/img_amatsutsumi_01.png)<br>
 
 ## 0x01 如何让游戏加载`libamatsutsumihook.so`

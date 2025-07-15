@@ -1,4 +1,5 @@
 # Amatsutsumi | アマツツミ | 天津罪 Android 中文本地化
+![Image text](https://raw.githubusercontent.com/cokkeijigen/amatsutsumi_android/master/pictures/img_amatsutsumi_00.png)<br>
 > 游戏详细：https://vndb.org/v18852  https://vndb.org/r100211 <br>
 > 使用的Hook库：https://github.com/jmpews/Dobby <br>
 > 准备工具：[Android Studio](https://developer.android.com/) [MT管理器](https://mt2.cn/) <br>

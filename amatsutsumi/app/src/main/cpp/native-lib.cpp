@@ -4,8 +4,9 @@ static auto call_type mbstowcs_one_hook(uint16_t chars) -> wchar_t
 {
     auto is_sjis_chars
     {
+        /* ♪・～－ 在GBK中没有的SJIS特殊符号 */
         chars == 0xF481 || chars == 0x4581 ||
-        chars == 0x6081 || chars  == 0x7C81
+        chars == 0x6081 || chars == 0x7C81
     };
     if(is_sjis_chars)
     {

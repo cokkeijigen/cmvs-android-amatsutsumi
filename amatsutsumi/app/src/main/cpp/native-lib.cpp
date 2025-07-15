@@ -2,10 +2,18 @@
 
 static auto call_type mbstowcs_one_hook(uint16_t chars) -> wchar_t
 {
-    auto u16char { gbk2utf16::query((chars & 0xFF) << 8 | (chars >> 8)) };
-    if(u16char != 0xFFFF)
+    auto is_sjis_chars
     {
-        return u16char;
+        chars == 0xF481 || chars == 0x4581 ||
+        chars == 0x6081 || chars  == 0x7C81
+    };
+    if(is_sjis_chars)
+    {
+        auto u16char { gbk2utf16::query((chars & 0xFF) << 8 | (chars >> 8)) };
+        if(u16char != 0xFFFF)
+        {
+            return u16char;
+        }
     }
     return hooker::call<mbstowcs_one_hook>(chars);
 }

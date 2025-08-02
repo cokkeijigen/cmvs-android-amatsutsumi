@@ -38,7 +38,7 @@ struct hooker
     }
 
     const void* handle;
-    inline hooker(const char* name): handle{ ::dlopen(name, RTLD_NOW) } {}
+    inline hooker(const char* name  ): handle{ ::dlopen(name, RTLD_NOW) } {}
     inline hooker(const void* handle): handle{ handle } {}
 
     template<class target>

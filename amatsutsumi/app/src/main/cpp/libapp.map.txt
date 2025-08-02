@@ -1,8 +1,0 @@
-{
-    global:
-        JNI_*;
-        Java_*;
-        _Patch_By_iTsukezigen_;
-    local:
-        *;
-};

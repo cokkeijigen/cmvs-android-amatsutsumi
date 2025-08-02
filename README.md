@@ -45,7 +45,7 @@
 最后使用`MT管理器`重新签名游戏`apk`即可。
 
 ## 0x02 更改默认字体
-打开游戏数据目录下的`cmvs.cfg` 编辑即可
+打开游戏数据目录下的`cmvs.cfg` 编辑即可。
 ```cfg
 [USE_DEFAULT_FONT]
 PATH=./font/SourceHanSerifCN-SemiBold.ttf

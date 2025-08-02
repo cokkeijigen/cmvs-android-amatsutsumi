@@ -100,8 +100,8 @@ namespace amatsutsumi
         m_this->cache_entry = new_entry;
         if (m_this->cache_count >= 0x400 && new_entry->next != nullptr)
         {
-            auto current_entry{ new_entry->next };
-            auto previous_entry{ static_cast<cache_entry_t*>(nullptr) };
+            cache_entry_t* current_entry{ new_entry->next };
+            cache_entry_t* previous_entry{ nullptr };
             do
             {
                 previous_entry = current_entry;

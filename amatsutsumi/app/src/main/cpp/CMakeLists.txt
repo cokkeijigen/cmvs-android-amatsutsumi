@@ -58,8 +58,10 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/src
 )
 
+target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wno-braced-scalar-init)
+
 if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-            LINK_FLAGS "-Wl,--version-script=${CMAKE_CURRENT_LIST_DIR}/lib.map.txt"
+    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES LINK_FLAGS
+            "-Wl,--version-script=${CMAKE_CURRENT_LIST_DIR}/lib.map.txt"
     )
 endif ()

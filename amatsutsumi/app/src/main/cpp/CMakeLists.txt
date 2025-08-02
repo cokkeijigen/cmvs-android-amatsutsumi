@@ -59,5 +59,5 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
 )
 
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-        LINK_FLAGS "-Wl,--version-script=${CMAKE_CURRENT_LIST_DIR}/libapp.map.txt"
+        LINK_FLAGS "-Wl,--version-script=${CMAKE_CURRENT_LIST_DIR}/lib.map.txt"
 )

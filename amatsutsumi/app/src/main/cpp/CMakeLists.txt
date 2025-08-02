@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.22.1)
 # build script scope).
 project("amatsutsumihook")
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 include(FetchContent)
 
@@ -41,7 +41,9 @@ FetchContent_MakeAvailable(DobbyHook)
 # used in the AndroidManifest.xml file.
 add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
-        native-lib.cpp)
+        src/amatsutsumi.cpp
+        src/native-lib.cpp
+)
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
@@ -53,4 +55,9 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         log)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR})
+        ${CMAKE_CURRENT_LIST_DIR}/src
+)
+
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+        LINK_FLAGS "-Wl,--version-script=${CMAKE_CURRENT_LIST_DIR}/libapp.map.txt"
+)

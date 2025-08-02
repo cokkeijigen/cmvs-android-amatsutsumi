@@ -12,10 +12,9 @@
 #define logd(...) LOGD(__VA_ARGS__)
 
 template <class T>
-concept hooker_target = requires(T t)
-{
-    T::sign;
-    T::func;
+concept hooker_target = requires {
+    { T::sign } -> std::convertible_to<const char*>;
+    requires std::is_function_v<decltype(T::func)>;
 };
 
 struct hooker

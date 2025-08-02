@@ -56,7 +56,10 @@ namespace amatsutsumi
                 current_entry = previous_entry->next;
             } while (current_entry != nullptr);
         }
-
+        else
+        {
+            m_this->cache_count = 0;
+        }
         auto buffer{new uint8_t[size * size]{}};
         font_image_output_t font_image_output
         {
@@ -89,16 +92,16 @@ namespace amatsutsumi
 
         auto new_entry = new cache_entry_t
         {
-            .next{m_this->cache_entry},
-            .buffer{buffer},
-            .uchar{uchar},
-            .size{static_cast<uint16_t>(size)}
+            .next{ m_this->cache_entry },
+            .buffer{ buffer },
+            .uchar{ uchar },
+            .size{ static_cast<uint16_t>(size) }
         };
         m_this->cache_entry = new_entry;
-        if (m_this->cache_count >= 0x400)
+        if (m_this->cache_count >= 0x400 && new_entry->next != nullptr)
         {
-            cache_entry_t *current_entry{new_entry->next};
-            cache_entry_t *previous_entry{nullptr};
+            auto current_entry{ new_entry->next };
+            auto previous_entry{ static_cast<cache_entry_t*>(nullptr) };
             do
             {
                 previous_entry = current_entry;

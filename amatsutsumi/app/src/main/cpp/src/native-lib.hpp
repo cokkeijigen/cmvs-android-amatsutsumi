@@ -41,8 +41,7 @@ struct hooker
     inline hooker(const char* name  ): handle{ ::dlopen(name, RTLD_NOW) } {}
     inline hooker(const void* handle): handle{ handle } {}
 
-    template<class target>
-    requires hooker_target<target>
+    template<hooker_target target>
     inline auto hook() -> int
     {
         auto raw{ ::dlsym(const_cast<void*>(this->handle), target::sign) };

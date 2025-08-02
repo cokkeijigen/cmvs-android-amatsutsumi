@@ -45,7 +45,7 @@ struct hooker
     requires hooker_target<target>
     inline auto hook() -> int
     {
-        auto raw{ ::dlsym(const_cast<void *>(this->handle), target::sign) };
+        auto raw{ ::dlsym(const_cast<void*>(this->handle), target::sign) };
         if(raw == nullptr)
         {
             return 0;

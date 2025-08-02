@@ -36,7 +36,7 @@ namespace amatsutsumi
         if (m_this->cache_entry != nullptr)
         {
             cache_entry_t *previous_entry{ nullptr };
-            cache_entry_t *current_entry{ m_this->cache_entry };
+            cache_entry_t *current_entry { m_this->cache_entry };
             do
             {
                 if (current_entry->uchar == uchar && current_entry->size == size)
@@ -53,35 +53,35 @@ namespace amatsutsumi
                     }
                 }
                 previous_entry = current_entry;
-                current_entry = previous_entry->next;
+                current_entry  = previous_entry->next;
             } while (current_entry != nullptr);
         }
         else
         {
             m_this->cache_count = 0;
         }
-        auto buffer{new uint8_t[size * size]{}};
+        auto buffer{ new uint8_t[size * size]{} };
         font_image_output_t font_image_output
         {
-            .uchar = static_cast<uint32_t>(uchar),
-            .pixel_size = static_cast<uint32_t>(size),
-            .load_flag = static_cast<size_t>(1)
+            .uchar{ static_cast<uint32_t>(uchar) },
+            .pixel_size{ static_cast<uint32_t>(size) },
+            .load_flag { static_cast<size_t>(1) }
         };
         hooker::call<c_font_list::get_font_image::func>(m_this->face_helper, &font_image_output);
         if (font_image_output.width != 0 && font_image_output.rows != 0 && font_image_output.bitmap_buffer != nullptr)
         {
-            uint8_t *src_buffer{font_image_output.bitmap_buffer};
-            const int32_t src_width{font_image_output.width};
-            const int32_t src_rows{font_image_output.rows};
-            const int32_t src_pitch{font_image_output.pitch};
+            uint8_t *src_buffer{ font_image_output.bitmap_buffer };
+            const int32_t src_width{ font_image_output.width };
+            const int32_t src_rows { font_image_output.rows  };
+            const int32_t src_pitch{ font_image_output.pitch };
 
-            const int32_t dest_start_x{std::max(0, font_image_output.bearing_x)};
-            const int32_t dest_start_y{std::max(0, font_image_output.bearing_y)};
-            const int32_t copy_width{std::min(src_width, size - dest_start_x)};
-            const int32_t copy_height{std::min(src_rows, size - dest_start_y)};
+            const int32_t dest_start_x{ std::max(0, font_image_output.bearing_x) };
+            const int32_t dest_start_y{ std::max(0, font_image_output.bearing_y) };
+            const int32_t copy_width { std::min(src_width, size - dest_start_x) };
+            const int32_t copy_height{ std::min(src_rows, size - dest_start_y)  };
 
-            uint8_t *src_ptr{src_buffer};
-            uint8_t *dest_ptr{buffer + (dest_start_y * size) + dest_start_x};
+            uint8_t *src_ptr { src_buffer };
+            uint8_t *dest_ptr{ buffer + (dest_start_y * size) + dest_start_x };
             for (int i{0}; i < copy_height; ++i)
             {
                 std::memcpy(dest_ptr, src_ptr, copy_width);
@@ -92,20 +92,20 @@ namespace amatsutsumi
 
         auto new_entry = new cache_entry_t
         {
-            .next{ m_this->cache_entry },
+            .next  { m_this->cache_entry },
             .buffer{ buffer },
-            .uchar{ uchar },
-            .size{ static_cast<uint16_t>(size) }
+            .uchar { uchar  },
+            .size  { static_cast<uint16_t>(size) }
         };
         m_this->cache_entry = new_entry;
         if (m_this->cache_count >= 0x400 && new_entry->next != nullptr)
         {
-            cache_entry_t* current_entry{ new_entry->next };
+            cache_entry_t* current_entry { new_entry->next };
             cache_entry_t* previous_entry{ nullptr };
             do
             {
                 previous_entry = current_entry;
-                current_entry = previous_entry->next;
+                current_entry  = previous_entry->next;
             } while (current_entry->next != nullptr);
 
             delete[] current_entry->buffer;

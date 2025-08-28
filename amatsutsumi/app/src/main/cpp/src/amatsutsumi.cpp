@@ -120,11 +120,11 @@ namespace amatsutsumi
         return buffer;
     }
 
-    auto ft_new_face::func(void *library, const char *filepathname, long face_index, void *face) -> int
+    auto ft_open_face::func(void *library, ft_open_args *args, long face_index, void *face) -> int
     {
         if(!amatsutsumi::game_data_path.empty())
         {
-            std::string target_font_path{};
+            static std::string target_font_path{};
             auto cmvs_cfg_file { amatsutsumi::game_data_path + "cmvs.cfg" };
             {
                 char buffer[256]{}, unk_abyte{};
@@ -149,19 +149,20 @@ namespace amatsutsumi
                     }
                 }
             }
-
             // logd("target_font_path -> %s", target_font_path.data());
             if(!target_font_path.empty())
             {
-                auto error { hooker::call<ft_new_face::func>(library, target_font_path.data(), face_index, face) };
+                const auto org_pathname { args->pathname };
+                args->pathname =  target_font_path.c_str();
+                auto error { hooker::call<ft_open_face::func>(library, args, face_index, face) };
                 if(error == 0)
                 {
                     return 0;
                 }
+                args->pathname = org_pathname;
             }
-
         }
-        return hooker::call<ft_new_face::func>(library, filepathname, face_index, face);
+        return hooker::call<ft_open_face::func>(library, args, face_index, face);
     }
 
     auto mbstowcs_one::func(uint16_t chars) -> wchar_t
@@ -192,4 +193,6 @@ namespace amatsutsumi
     {
         return hooker::call<api_get_private_profile_string::func>(top_name, name, unk_abyte, buffer, buffer_max, file);
     }
+
+
 }

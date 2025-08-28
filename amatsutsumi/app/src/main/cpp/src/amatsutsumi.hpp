@@ -71,13 +71,24 @@ namespace amatsutsumi
         };
     };
 
-    struct ft_new_face    
+    struct ft_open_face
     {
-        inline static constexpr char sign[]{ "FT_New_Face" };
-        static auto func(void* library, const char *filepathname, long face_index, void *face) -> int;
-    };
+        struct ft_open_args
+        {
+            unsigned int flags;
+            unsigned char* memory_base;
+            unsigned long memory_size;
+            const char* pathname;
+            const void* stream;
+            const void* driver;
+            signed int num_params;
+            const void* params;
+        };
 
-    struct mbstowcs_one    
+        inline static constexpr char sign[]{ "FT_Open_Face" };
+        static auto func(void* library, ft_open_args *args, long face_index, void *face) -> int;
+    };
+    struct mbstowcs_one
     {
         inline static constexpr char sign[]{ "_Z13_mbstowcs_onet" };
         static auto func(uint16_t chars) -> wchar_t;

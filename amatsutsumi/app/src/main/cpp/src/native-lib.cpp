@@ -14,10 +14,13 @@ extern "C"
         return env->NewStringUTF("Patch By iTsukezigen.");
     }
 
+
+
+
     JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
     {
         hooker libamatsutsumi{ "libamatsutsumi.so" };
-        libamatsutsumi.hook<amatsutsumi::ft_new_face>();
+        libamatsutsumi.hook<amatsutsumi::ft_open_face>();
         libamatsutsumi.hook<amatsutsumi::mbstowcs_one>();
         libamatsutsumi.hook<amatsutsumi::api_sjis_check>();
         libamatsutsumi.hook<amatsutsumi::c_font_buffer::get_font_image_cache>();

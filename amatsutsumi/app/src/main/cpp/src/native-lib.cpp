@@ -14,9 +14,6 @@ extern "C"
         return env->NewStringUTF("Patch By iTsukezigen.");
     }
 
-
-
-
     JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
     {
         hooker libamatsutsumi{ "libamatsutsumi.so" };
